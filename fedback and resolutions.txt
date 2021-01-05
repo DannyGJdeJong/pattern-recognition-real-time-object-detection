@@ -1,0 +1,30 @@
+Feedback project proposal (ALI)
+
+- Why we choose our dataset
+- How do we expect it to perform
+- Why would it perform good/bad
+- Change parameters/archetecture
+- Evaluation: try to combine average precision and speed?
+	      why do we have precision and not accuracy IOU?
+
+
+
+
+Ideas to improve architecture, mostly from 
+'You Only Look Once V4 – Optimal Speed and Accuracy of Object Detection (2020)' (Bag of Freebies)
+Methods that only change the training strategy or increase the training cost
+-	Data augmentation 
+      o	Randomly alter lightning/hue/rotation of images to improve robustness ->generalize model
+        especially good to use on underrpresented object classes in training data
+
+-	Object occlusion
+	In order to let model perform well when there is occlusion, manually create more occlusion
+        in training data by randomly deleting rectangles from image and filling in pixels with 0's.
+      o	Random erase
+      o	Cutout 
+      o	Hide-and seek
+      o	Filling in empty spot with othert image
+
+-	Objective function 
+     o 	The objective function doesn’t optimize for regression with MSE regression. We could try to use another function (not sure what), probably big-ish change
+     o	Change IOU loss function, some researchers have proposed GIOU/CIOU (blz 3)
