@@ -78,6 +78,10 @@ instance/
 docs/_build/
 doc/_build/
 
+data/
+logs/
+trained/
+
 # PyBuilder
 target/
 
