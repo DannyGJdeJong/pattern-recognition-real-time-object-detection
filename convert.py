@@ -1,8 +1,8 @@
 from collections import defaultdict
 
-INSTANCES_PATH = "_annotations.csv"
-NAMES_PATH = "custom.names"
-OUTPUT_FILE_PATH = "custom_train.txt"
+INSTANCES_PATH = "E:\Documenten E\University\Jaar 4\Blok 2\WorkspacePractical\Yolov4 Source\export\_annotations.csv"
+NAMES_PATH = "E:\Documenten E\University\Jaar 4\Blok 2\WorkspacePractical\Yolov4 Source\export\custom.names"
+OUTPUT_FILE_PATH = "E:\Documenten E\University\Jaar 4\Blok 2\WorkspacePractical\Yolov4 Source\export\custom_train.txt"
 
 files = defaultdict(lambda: [])
 classes = defaultdict(lambda: len(classes))
