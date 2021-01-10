@@ -19,7 +19,7 @@ def loadImages(path = "Yolov4 Source/combined_classes"):
     decrease_for_max_images = (len(temp)%4 )  #removes images that can't be combined in another 4-tile
     for i,img in enumerate(temp):  
         if img.endswith(".jpg"): 
-            if(i <= (len(temp)/4) - decrease_for_max_images ):                   
+            if(i <= (len(temp)) - decrease_for_max_images ):                   
                 if(i%4==0) :   
                     images1s.append(img)
                     images1n.append( cv2.imread(f"Yolov4 Source/combined_classes/{(images1s[int(i/4)])}", cv2.IMREAD_UNCHANGED))
@@ -37,7 +37,7 @@ def loadImages(path = "Yolov4 Source/combined_classes"):
                     images4n.append( cv2.imread(f"Yolov4 Source/combined_classes/{(images4s[int(i/4)])}", cv2.IMREAD_UNCHANGED))
                     images4n[0] =resizeimg(images2n[0])
            
-            if (i%4 ==3 and i!=0 and i <= (len(temp)/4) - decrease_for_max_images ):  
+            if (i%4 ==3 and i!=0 and i <= (len(temp)) - decrease_for_max_images ):  
                 comb_filename = f'{str(images1s[int(i/4.01)])}{str(images2s[int(i/4.01)])}{str(images3s[int(i/4.01)])}{images4s[int(i/4.01)]}'
                 comb_file_id = str(int(i/4.01))+"a.jpg"
                 im_tile = concat_tile([[images1n[0], images2n[0]],
