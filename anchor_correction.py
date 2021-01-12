@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.cluster import KMeans
-import collections
-import warnings
-warnings.filterwarnings('ignore')
 
 data = pd.read_csv('_annotations.csv')
 data = pd.DataFrame(data, columns=['width', 'height','xmin', 'ymin','xmax', 'ymax'])
