@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-data = pd.read_csv('_annotations.csv')
+data = pd.read_csv('_annotations_comb.csv')
 data = pd.DataFrame(data, columns=['width', 'height','xmin', 'ymin','xmax', 'ymax'])
 data['box_w'] = data['xmax'] - data['xmin'] + 1
 data['box_h'] = data['ymax'] - data['ymin'] + 1
