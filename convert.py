@@ -1,8 +1,12 @@
 from collections import defaultdict
+import random
 
 INSTANCES_PATH = "_annotations.csv"
 NAMES_PATH = "custom.names"
-OUTPUT_FILE_PATH = "custom_train.txt"
+TRAIN_OUTPUT_FILE_PATH = "custom_train.txt"
+VAL_OUTPUT_FILE_PATH = "custom_val.txt"
+
+validation_ratio = 0.05
 
 files = defaultdict(lambda: [])
 classes = defaultdict(lambda: len(classes))
@@ -31,8 +35,23 @@ with open(NAMES_PATH, "w") as f:
     for class_name in classes.keys():
         f.write(class_name + "\n")
 
-with open(OUTPUT_FILE_PATH, "w") as f:
-    for filename in files.keys():
+filenames = list(files.keys())
+random.shuffle(filenames)
+
+cutoff = round(len(filenames) * validation_ratio)
+
+val_filenames = filenames[:cutoff]
+train_filenames = filenames[cutoff:]
+
+with open(VAL_OUTPUT_FILE_PATH, "w") as f:
+    for filename in val_filenames:
+        f.write(filename)
+        for detected_object in files[filename]:
+            f.write(" " + ','.join(map(str, detected_object)))
+        f.write('\n')
+
+with open(TRAIN_OUTPUT_FILE_PATH, "w") as f:
+    for filename in train_filenames:
         f.write(filename)
         for detected_object in files[filename]:
             f.write(" " + ','.join(map(str, detected_object)))
