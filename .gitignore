@@ -81,6 +81,9 @@ doc/_build/
 data/
 logs/
 trained/
+custom.names
+custom_train.txt
+custom_val.txt
 
 # PyBuilder
 target/
