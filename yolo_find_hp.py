@@ -39,7 +39,8 @@ def model_builder(hp: kt.HyperParameters):
     optimizer = optimizers.Adam(learning_rate=hp_learning_rate)
     yolo.compile(
         optimizer=optimizer,
-        loss_iou_type=hp_loss_iou_type
+        loss_iou_type=hp_loss_iou_type,
+        loss_verbose=0,
     )
 
     return yolo.model
@@ -64,7 +65,7 @@ _callbacks = [
 tuner = kt.Hyperband(
     model_builder,
     objective="loss",
-    max_epochs=40,
+    max_epochs=20,
     directory=log_dir
 )
 
@@ -76,7 +77,6 @@ tuner.search(
     validation_data=val_data_set,
     validation_steps=50,
     validation_freq=1,
-    verbose=0,
 )
 
 tuner.search_space_summary(extended=True)

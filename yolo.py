@@ -10,7 +10,7 @@ yolo.classes = "./custom.names"
 yolo.input_size = (512, 512)
 yolo.batch_size = 16
 
-yolo.make_model()
+yolo.make_model(activation1="mish")
 # yolo.load_weights(
 #     "./trained/yolov4-tiny-10.weights",
 #     weights_type="yolo"
@@ -47,7 +47,9 @@ _callbacks = [
     callbacks.LearningRateScheduler(lr_scheduler),
     callbacks.TerminateOnNaN(),
     callbacks.TensorBoard(
-        log_dir=log_dir, histogram_freq=1
+        log_dir=log_dir,
+        histogram_freq=1,
+        profile_batch=(10,20)
     ),
     SaveWeightsCallback(
         yolo=yolo, dir_path=f"./trained/{now}",
@@ -58,9 +60,9 @@ _callbacks = [
 yolo.fit(
     train_data_set,
     epochs=epochs,
+    steps_per_epoch=100,
     callbacks=_callbacks,
     validation_data=val_data_set,
     validation_steps=50,
     validation_freq=5,
-    steps_per_epoch=100,
 )
